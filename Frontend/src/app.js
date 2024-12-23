@@ -1,6 +1,7 @@
 // filepath: /C:/Users/SAGAR/Desktop/Management/Frontend/src/App.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./App.css"
 
 const App = () => {
   const [employee, setEmployee] = useState({
@@ -78,7 +79,7 @@ const App = () => {
           <input type="text" placeholder="Personal Details" onChange={(e) => setEmployee({ ...employee, personalDetails: e.target.value })} />
           <input type="text" placeholder="Shift" onChange={(e) => setEmployee({ ...employee, shift: e.target.value })} />
           <input type="text" placeholder="Salary Details" onChange={(e) => setEmployee({ ...employee, salaryDetails: e.target.value })} />
-          <button type="submit">Onboard</button>
+          <button type="submit" className='onboard'>Onboard</button>
         </form>
       </section>
 
@@ -88,7 +89,7 @@ const App = () => {
           <input type="text" placeholder="Task ID" onChange={(e) => setTask({ ...task, id: e.target.value })} />
           <input type="text" placeholder="Assigned To" onChange={(e) => setTask({ ...task, assignedTo: e.target.value })} />
           <input type="text" placeholder="Description" onChange={(e) => setTask({ ...task, description: e.target.value })} />
-          <button type="submit">Assign</button>
+          <button type="submit"  className='assign'>Assign</button>
         </form>
       </section>
 
@@ -98,13 +99,13 @@ const App = () => {
           <input type="text" placeholder="Employee ID" onChange={(e) => setAttendance({ ...attendance, employeeId: e.target.value })} />
           <input type="time" placeholder="In Time" onChange={(e) => setAttendance({ ...attendance, inTime: e.target.value })} />
           <input type="time" placeholder="Out Time" onChange={(e) => setAttendance({ ...attendance, outTime: e.target.value })} />
-          <button type="submit">Mark Attendance</button>
+          <button type="submit"  className='mark'>Mark Attendance</button>
         </form>
       </section>
 
-      <section>
+      <section className='Generate_report'>
         <h2>Generate Report</h2>
-        <div>
+        <div className='dropdown'>
           <label>Report Type:</label>
           <select value={reportType} onChange={(e) => setReportType(e.target.value)}>
             <option value="daily">Daily</option>
@@ -112,7 +113,7 @@ const App = () => {
             <option value="employees">Employees</option>
           </select>
         </div>
-        <button onClick={handleGenerateReport}>Generate Report</button>
+        <button onClick={handleGenerateReport} className='generate'>Generate Report</button>
         {report && (
           <div>
             <h2>Report:</h2>
