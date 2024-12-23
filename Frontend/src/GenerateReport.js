@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 function GenerateReport() {
   const [reportType, setReportType] = useState('daily');
   const [report, setReport] = useState(null);
 
-  const handleGenerateReport = async () => {
-    try {
-      const response = await axios.get(`http://localhost:5000/generate_report?type=${reportType}`);
-      setReport(response.data.report);
-    } catch (error) {
-      console.error('There was an error generating the report!', error);
-    }
+  const handleGenerateReport = () => {
+    // Here you can handle the report generation logic locally
+    // For demonstration, we'll just set a dummy report
+    const dummyReport = {
+      daily: [{ id: 1, name: 'John Doe', attendance: 'Present' }],
+      tasks: [{ id: 1, task: 'Task 1', assignedTo: 'John Doe' }],
+      employees: [{ id: 1, name: 'John Doe', position: 'Developer' }],
+    };
+
+    setReport(dummyReport[reportType]);
   };
 
   return (

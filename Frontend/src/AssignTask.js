@@ -1,37 +1,33 @@
-// filepath: /C:/Users/SAGAR/Desktop/Management/Frontend/src/AssignTask.js
-import React, { useState } from 'react';
-import axios from 'axios';
+// filepath: /C:/Users/SAGAR/Desktop/Management/Frontend/src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import OnboardEmployee from './OnboardEmployee';
+import AssignTask from './AssignTask';
+import MarkAttendance from './MarkAttendance';
+import GenerateReport from './GenerateReport';
 
-function AssignTask() {
-  const [task, setTask] = useState('');
-  const [employeeId, setEmployeeId] = useState('');
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:5000/assign_task', {
-        task,
-        employeeId,
-      });
-      alert(response.data.message);
-    } catch (error) {
-      console.error('There was an error assigning the task!', error);
-    }
-  };
-
+const App = () => {
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Task:</label>
-        <input type="text" value={task} onChange={(e) => setTask(e.target.value)} />
+    <Router>
+      <div className="App">
+        <h1>Work Tracking System</h1>
+        <nav>
+          <ul>
+            <li><Link to="/onboard-employee">Onboard Employee</Link></li>
+            <li><Link to="/assign-task">Assign Task</Link></li>
+            <li><Link to="/mark-attendance">Mark Attendance</Link></li>
+            <li><Link to="/generate-report">Generate Report</Link></li>
+          </ul>
+        </nav>
+        <Switch>
+          <Route path="/onboard-employee" component={OnboardEmployee} />
+          <Route path="/assign-task" component={AssignTask} />
+          <Route path="/mark-attendance" component={MarkAttendance} />
+          <Route path="/generate-report" component={GenerateReport} />
+        </Switch>
       </div>
-      <div>
-        <label>Employee ID:</label>
-        <input type="text" value={employeeId} onChange={(e) => setEmployeeId(e.target.value)} />
-      </div>
-      <button type="submit">Assign Task</button>
-    </form>
+    </Router>
   );
-}
+};
 
-export default AssignTask;
+export default App;

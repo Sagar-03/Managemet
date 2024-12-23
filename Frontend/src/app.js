@@ -78,7 +78,6 @@ const App = () => {
           <input type="text" placeholder="Personal Details" onChange={(e) => setEmployee({ ...employee, personalDetails: e.target.value })} />
           <input type="text" placeholder="Shift" onChange={(e) => setEmployee({ ...employee, shift: e.target.value })} />
           <input type="text" placeholder="Salary Details" onChange={(e) => setEmployee({ ...employee, salaryDetails: e.target.value })} />
-          <input type="text" placeholder="GPS Location" onChange={(e) => setEmployee({ ...employee, gpsLocation: e.target.value })} />
           <button type="submit">Onboard</button>
         </form>
       </section>

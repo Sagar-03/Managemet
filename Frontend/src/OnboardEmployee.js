@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function OnboardEmployee() {
   const [name, setName] = useState('');
   const [position, setPosition] = useState('');
+  const history = useHistory();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:5000/onboard_employee', {
-        name,
-        position,
-      });
-      alert(response.data.message);
-    } catch (error) {
-      console.error('There was an error onboarding the employee!', error);
-    }
+    console.log('Employee onboarded:', { name, position });
+    alert('Employee onboarded successfully!');
+    history.push('/'); // Navigate to the home page or another route
   };
 
   return (

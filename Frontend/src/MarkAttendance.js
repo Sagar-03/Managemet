@@ -1,23 +1,18 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function MarkAttendance() {
   const [employeeId, setEmployeeId] = useState('');
   const [inTime, setInTime] = useState('');
   const [outTime, setOutTime] = useState('');
+  const history = useHistory();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:5000/mark_attendance', {
-        employeeId,
-        inTime,
-        outTime,
-      });
-      alert(response.data.message);
-    } catch (error) {
-      console.error('There was an error marking the attendance!', error);
-    }
+    // Here you can handle the form submission, e.g., save to local state or navigate to another route
+    console.log('Attendance marked:', { employeeId, inTime, outTime });
+    alert('Attendance marked successfully!');
+    history.push('/'); // Navigate to the home page or another route
   };
 
   return (
@@ -28,11 +23,11 @@ function MarkAttendance() {
       </div>
       <div>
         <label>In Time:</label>
-        <input type="text" value={inTime} onChange={(e) => setInTime(e.target.value)} />
+        <input type="time" value={inTime} onChange={(e) => setInTime(e.target.value)} />
       </div>
       <div>
         <label>Out Time:</label>
-        <input type="text" value={outTime} onChange={(e) => setOutTime(e.target.value)} />
+        <input type="time" value={outTime} onChange={(e) => setOutTime(e.target.value)} />
       </div>
       <button type="submit">Mark Attendance</button>
     </form>
